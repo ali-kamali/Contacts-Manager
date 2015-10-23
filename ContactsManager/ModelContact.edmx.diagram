@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a514874708274b4b9c2451b1c5d53767" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="ContactsModel.ContactAddress" Width="1.5" PointX="3" PointY="8.125" />
+        <EntityTypeShape EntityType="ContactsModel.ContactEmail" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="ContactsModel.ContactGroup" Width="1.5" PointX="3" PointY="2.375" />
+        <EntityTypeShape EntityType="ContactsModel.ContactGroupDef" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="ContactsModel.ContactPhone" Width="1.5" PointX="3" PointY="5.375" />
+        <AssociationConnector Association="ContactsModel.FK_ContactGroup_1_0" />
+        <EntityTypeShape EntityType="ContactsModel.ContactPerson" Width="1.5" PointX="0.75" PointY="6.25" />
+        <AssociationConnector Association="ContactsModel.FK_ContactAddress_0_0" />
+        <AssociationConnector Association="ContactsModel.FK_ContactEmail_0_0" />
+        <AssociationConnector Association="ContactsModel.FK_ContactGroup_0_0" />
+        <AssociationConnector Association="ContactsModel.FK_ContactPhone_0_0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
