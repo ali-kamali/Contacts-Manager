@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupsMng));
             this.btn_addGroup = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_groupName = new System.Windows.Forms.TextBox();
@@ -37,7 +38,9 @@
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_close = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_group)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_addGroup
@@ -95,8 +98,8 @@
             this.dataGV_group.Name = "dataGV_group";
             this.dataGV_group.ReadOnly = true;
             this.dataGV_group.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGV_group.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGV_group.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGV_group.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGV_group.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.dataGV_group.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -129,21 +132,34 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::ContactsManager.Properties.Resources._1445637555_conference_call;
+            this.pictureBox1.Location = new System.Drawing.Point(204, 187);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(142, 94);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 32;
+            this.pictureBox1.TabStop = false;
+            // 
             // GroupsMng
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 300);
+            this.ClientSize = new System.Drawing.Size(419, 294);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.dataGV_group);
             this.Controls.Add(this.btn_removeGroup);
             this.Controls.Add(this.btn_addGroup);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.tb_groupName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GroupsMng";
             this.Text = "GroupsMng";
             this.Load += new System.EventHandler(this.GroupsMng_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_group)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,5 +175,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.Button btn_close;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

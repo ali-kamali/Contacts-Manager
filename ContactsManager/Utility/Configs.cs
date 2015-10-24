@@ -14,8 +14,18 @@ namespace ContactsManager.Utility
 
        public static List<DataModel> DataModels=new List<DataModel>()
        {
-           new DataModel(){ModelId = 1,ModelName = "نام"},
-           new DataModel(){ModelId = 1,ModelName = "نام خانوادگی"}
+           new DataModel(){ModelId = 0,Modelkey = DataModelKey.None,ModelName = "--"},
+           new DataModel(){ModelId = 1,Modelkey = DataModelKey.FirstName,ModelName = "نام"},
+           new DataModel(){ModelId = 2,Modelkey = DataModelKey.LastName,ModelName = "نام خانوادگی"},
+           new DataModel(){ModelId = 3,Modelkey = DataModelKey.PostName,ModelName = "سمت"},
+           new DataModel(){ModelId = 4,Modelkey = DataModelKey.BirthDate,ModelName = "تاریخ تولد"},
+           new DataModel(){ModelId = 5,Modelkey = DataModelKey.MobilePhone,ModelName = "شماره همراه"},
+           new DataModel(){ModelId = 6,Modelkey = DataModelKey.HomePhone,ModelName = "شماره خانه"},
+           new DataModel(){ModelId = 7,Modelkey = DataModelKey.WorkPhone,ModelName = "شماره دفتر"},
+           new DataModel(){ModelId = 8,Modelkey = DataModelKey.PersonalEmail,ModelName = "رایانامه شخصی"},
+           new DataModel(){ModelId = 9,Modelkey = DataModelKey.WorkEmail,ModelName = "رایانامه کاری"},
+           new DataModel(){ModelId = 10,Modelkey = DataModelKey.HomeAddress,ModelName = "آدرس منزل"},
+           new DataModel(){ModelId = 11,Modelkey = DataModelKey.WorkAddress,ModelName = "آدرس محل کار"},
        }; 
     }
 
@@ -23,5 +33,22 @@ namespace ContactsManager.Utility
     {
         public int ModelId { get; set; }
         public string ModelName { get; set; }
+        public DataModelKey Modelkey { get; set; }
+    }
+
+    public enum DataModelKey
+    {
+        None,
+        FirstName,
+        LastName,
+        PostName,
+        BirthDate,
+        MobilePhone,
+        HomePhone,
+        WorkPhone,
+        PersonalEmail,
+        WorkEmail,
+        HomeAddress,
+        WorkAddress,
     }
 }

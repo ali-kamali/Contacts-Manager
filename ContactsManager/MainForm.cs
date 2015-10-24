@@ -58,5 +58,23 @@ namespace ContactsManager
         {
 
         }
+        private void btn_ClearAll_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("آیااز این کار مطمعن هستید؟", "هشدار", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                ContactsEntities db = new ContactsEntities();
+                db.Database.ExecuteSqlCommand("delete from ContactAddress;");
+                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactAddress';");
+                db.Database.ExecuteSqlCommand("delete from ContactEmail;    ");
+                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactEmail';");
+                db.Database.ExecuteSqlCommand("delete from ContactGroup;    ");
+                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactGroup';");
+                db.Database.ExecuteSqlCommand("delete from ContactPerson;    ");
+                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactPerson';");
+                db.Database.ExecuteSqlCommand("delete from ContactPhone;    ");
+                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactPhone';");
+                MessageBox.Show("پاک سازی با موفقیت انجام شد");
+            }
+        }
     }
 }

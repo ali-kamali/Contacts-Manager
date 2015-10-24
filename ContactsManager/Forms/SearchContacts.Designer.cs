@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchContacts));
             this.label3 = new System.Windows.Forms.Label();
             this.tb_address = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,9 +43,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tb_email = new System.Windows.Forms.TextBox();
             this.dataGV_person = new System.Windows.Forms.DataGridView();
-            this.btn_Search = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_postname = new System.Windows.Forms.TextBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,12 +51,16 @@
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_Search = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_postname = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_person)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("B Nazanin", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label3.Location = new System.Drawing.Point(426, 57);
             this.label3.Name = "label3";
@@ -120,7 +122,7 @@
             this.clb_Groups.Location = new System.Drawing.Point(12, 12);
             this.clb_Groups.Name = "clb_Groups";
             this.clb_Groups.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.clb_Groups.Size = new System.Drawing.Size(202, 139);
+            this.clb_Groups.Size = new System.Drawing.Size(202, 134);
             this.clb_Groups.TabIndex = 6;
             // 
             // label5
@@ -179,8 +181,8 @@
             this.dataGV_person.Name = "dataGV_person";
             this.dataGV_person.ReadOnly = true;
             this.dataGV_person.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGV_person.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGV_person.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGV_person.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             this.dataGV_person.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.dataGV_person.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -188,35 +190,6 @@
             this.dataGV_person.Size = new System.Drawing.Size(792, 269);
             this.dataGV_person.TabIndex = 21;
             this.dataGV_person.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGV_person_MouseDoubleClick);
-            // 
-            // btn_Search
-            // 
-            this.btn_Search.Font = new System.Drawing.Font("B Nazanin", 14.25F);
-            this.btn_Search.Location = new System.Drawing.Point(220, 99);
-            this.btn_Search.Name = "btn_Search";
-            this.btn_Search.Size = new System.Drawing.Size(200, 42);
-            this.btn_Search.TabIndex = 22;
-            this.btn_Search.Text = "جست و جو";
-            this.btn_Search.UseVisualStyleBackColor = true;
-            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("B Nazanin", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.Location = new System.Drawing.Point(721, 140);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 28);
-            this.label4.TabIndex = 24;
-            this.label4.Text = "سمت";
-            // 
-            // tb_postname
-            // 
-            this.tb_postname.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.tb_postname.Location = new System.Drawing.Point(515, 141);
-            this.tb_postname.Name = "tb_postname";
-            this.tb_postname.Size = new System.Drawing.Size(200, 31);
-            this.tb_postname.TabIndex = 23;
             // 
             // id
             // 
@@ -248,8 +221,8 @@
             // 
             // PhoneNumber
             // 
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PhoneNumber.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PhoneNumber.DefaultCellStyle = dataGridViewCellStyle1;
             this.PhoneNumber.HeaderText = "تلفن تماس";
             this.PhoneNumber.Name = "PhoneNumber";
             this.PhoneNumber.ReadOnly = true;
@@ -276,11 +249,42 @@
             this.Group.ReadOnly = true;
             this.Group.Width = 56;
             // 
+            // btn_Search
+            // 
+            this.btn_Search.Font = new System.Drawing.Font("B Nazanin", 14.25F);
+            this.btn_Search.Location = new System.Drawing.Point(220, 99);
+            this.btn_Search.Name = "btn_Search";
+            this.btn_Search.Size = new System.Drawing.Size(200, 42);
+            this.btn_Search.TabIndex = 22;
+            this.btn_Search.Text = "جست و جو";
+            this.btn_Search.UseVisualStyleBackColor = true;
+            this.btn_Search.Click += new System.EventHandler(this.btn_Search_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("B Nazanin", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label4.Location = new System.Drawing.Point(721, 140);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 28);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "سمت";
+            // 
+            // tb_postname
+            // 
+            this.tb_postname.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.tb_postname.Location = new System.Drawing.Point(515, 141);
+            this.tb_postname.Name = "tb_postname";
+            this.tb_postname.Size = new System.Drawing.Size(200, 31);
+            this.tb_postname.TabIndex = 23;
+            // 
             // SearchContacts
             // 
             this.AcceptButton = this.btn_Search;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::ContactsManager.Properties.Resources._1445637792_fine_print;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(807, 459);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tb_postname);
@@ -297,6 +301,8 @@
             this.Controls.Add(this.tb_LastName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_firstname);
+            this.DoubleBuffered = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchContacts";
             this.Text = "SearchContacts";
             this.Load += new System.EventHandler(this.SearchContacts_Load);

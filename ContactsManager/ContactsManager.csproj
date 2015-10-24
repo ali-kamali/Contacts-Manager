@@ -199,6 +199,9 @@
       <DependentUpon>ModelContact.edmx</DependentUpon>
       <LastGenOutput>ModelContact.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\1445637792_fine_print.png" />
+    <None Include="Resources\1445637555_conference_call.png" />
+    <None Include="Resources\1445637413_upload.png" />
     <None Include="Resources\plus.png" />
   </ItemGroup>
   <ItemGroup>

@@ -34,6 +34,7 @@
             this.btn_groups = new System.Windows.Forms.Button();
             this.btn_import = new System.Windows.Forms.Button();
             this.btn_export = new System.Windows.Forms.Button();
+            this.btn_ClearAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_add
@@ -91,11 +92,23 @@
             this.btn_export.UseVisualStyleBackColor = true;
             this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
             // 
+            // btn_ClearAll
+            // 
+            this.btn_ClearAll.Font = new System.Drawing.Font("B Nazanin", 12F);
+            this.btn_ClearAll.Location = new System.Drawing.Point(13, 71);
+            this.btn_ClearAll.Name = "btn_ClearAll";
+            this.btn_ClearAll.Size = new System.Drawing.Size(150, 53);
+            this.btn_ClearAll.TabIndex = 6;
+            this.btn_ClearAll.Text = "پاک کردن داده ها";
+            this.btn_ClearAll.UseVisualStyleBackColor = true;
+            this.btn_ClearAll.Click += new System.EventHandler(this.btn_ClearAll_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(331, 197);
+            this.Controls.Add(this.btn_ClearAll);
             this.Controls.Add(this.btn_export);
             this.Controls.Add(this.btn_import);
             this.Controls.Add(this.btn_groups);
@@ -115,6 +128,7 @@
         private System.Windows.Forms.Button btn_groups;
         private System.Windows.Forms.Button btn_import;
         private System.Windows.Forms.Button btn_export;
+        private System.Windows.Forms.Button btn_ClearAll;
     }
 }
 
