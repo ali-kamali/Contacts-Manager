@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using ContactsManager.Utility;
 using OfficeOpenXml;
@@ -15,6 +18,9 @@ namespace ContactsManager.Forms
     public partial class Import : Form
     {
         private string FilepathString = "";
+        private Thread _t;
+        private List<ContactGroup> _contactGroups;
+        private List<DataModelKey> _dataModels;
         public Import()
         {
             InitializeComponent();
@@ -67,12 +73,21 @@ namespace ContactsManager.Forms
 
         private void btn_import_Click(object sender, EventArgs e)
         {
-            List<ContactGroup> contactGroups= (from ContactGroupDef g in clb_Groups.SelectedItems select new ContactGroup() {GroupId = g.Id}).ToList();
-            ContactsEntities db=new ContactsEntities();
+            _contactGroups = (from ContactGroupDef g in clb_Groups.SelectedItems select new ContactGroup() { GroupId = g.Id }).ToList();
+            _dataModels = (from DataGridViewRow row in dataGV_group.Rows select (DataModelKey)row.Cells[1].Value).ToList();
+            _t = new Thread(import);
+            if (!_t.IsAlive)
+                _t.Start();
             btn_import.Enabled = false;
+        }
+
+        private void import()
+        {
+
+            ContactsEntities db = new ContactsEntities();
             int cnt = 0;
-            var now = DateTime.Now;
             
+            var now = DateTime.Now;
             var existingFile = new FileInfo(FilepathString);
             using (var package = new ExcelPackage(existingFile))
             {
@@ -83,12 +98,15 @@ namespace ContactsManager.Forms
                     if (workBook.Worksheets.Count > 0)
                     {
                         ExcelWorksheet currentWorksheet = workBook.Worksheets.First();
-                        List<DataModelKey> dataModels = (from DataGridViewRow row in dataGV_group.Rows select (DataModelKey)row.Cells[1].Value).ToList();
 
+                        SetControlPropertyValue(l_allcnt, "Text", currentWorksheet.Dimension.End.Row.ToString());
                         for (int i = 2; i <= currentWorksheet.Dimension.End.Row; i++)
                         {
                             int col = 0;
+                            SetControlPropertyValue(L_per, "Text", "%" + ((float) cnt * 100 / currentWorksheet.Dimension.End.Row).ToString("00.00"));
+                            SetControlPropertyValue(L_cnt, "Text", cnt.ToString());
                             cnt++;
+                            
                             ContactPerson person = new ContactPerson();
                             List<ContactPhone> contactPhones = new List<ContactPhone>();
                             List<ContactEmail> contactEmails = new List<ContactEmail>();
@@ -96,9 +114,9 @@ namespace ContactsManager.Forms
                             foreach (var rowCell in currentWorksheet.Cells[i, 1, i, currentWorksheet.Dimension.End.Column])
                             {
                                 string value = rowCell.Text;
-                                if (!string.IsNullOrEmpty(value)&&col<dataModels.Count)
+                                if (!string.IsNullOrEmpty(value) && col < _dataModels.Count)
                                 {
-                                    switch (dataModels[col])
+                                    switch (_dataModels[col])
                                     {
                                         case DataModelKey.FirstName:
                                             person.FirstName = value;
@@ -115,7 +133,7 @@ namespace ContactsManager.Forms
                                             person.DateOfBirth = birthdate;
                                             break;
                                         case DataModelKey.MobilePhone:
-                                            contactPhones.Add(new ContactPhone(){PhoneType = 0,PhoneNumber = value});
+                                            contactPhones.Add(new ContactPhone() { PhoneType = 0, PhoneNumber = value });
                                             break;
                                         case DataModelKey.HomePhone:
                                             contactPhones.Add(new ContactPhone() { PhoneType = 1, PhoneNumber = value });
@@ -158,7 +176,7 @@ namespace ContactsManager.Forms
                                     contactEmail.ContactPersonID = person.Id;
                                     db.ContactEmail.Add(contactEmail);
                                 }
-                                foreach (ContactGroup contactGroup in contactGroups)
+                                foreach (ContactGroup contactGroup in _contactGroups)
                                 {
                                     contactGroup.ContactPersonID = person.Id;
                                     db.ContactGroup.Add(contactGroup);
@@ -170,11 +188,46 @@ namespace ContactsManager.Forms
                                 break;
                             }
                         }
-                        btn_import.Enabled = true;
                     }
                 }
             }
-            MessageBox.Show(cnt+ " Added in "+DateTime.Now.Subtract(now).TotalSeconds+" Secs");
+            MessageBox.Show(cnt + " Added in " + DateTime.Now.Subtract(now).TotalSeconds + " Secs");
+            SetControlPropertyValue(btn_import, "Enabled", true);
+            
+        }
+        delegate void SetControlValueCallback(Control oControl, string propName, object propValue);
+        private void SetControlPropertyValue(Control oControl, string propName, object propValue)
+        {
+            if (oControl.InvokeRequired)
+            {
+                SetControlValueCallback d = SetControlPropertyValue;
+                oControl.Invoke(d, new object[] { oControl, propName, propValue });
+            }
+            else
+            {
+                Type type = oControl.GetType();
+                PropertyInfo[] props = type.GetProperties();
+                foreach (PropertyInfo p in props)
+                {
+                    if (p.Name.ToUpper() == propName.ToUpper())
+                    {
+                        p.SetValue(oControl, propValue, null);
+                    }
+                }
+            }
+        }
+        void Import_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                if (_t.IsAlive)
+                    _t.Abort();
+            }
+            catch (Exception)
+            {
+
+
+            }
 
         }
     }

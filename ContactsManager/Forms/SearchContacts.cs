@@ -44,8 +44,19 @@ namespace ContactsManager.Forms
                 (string.IsNullOrEmpty(tb_email.Text) || p.ContactEmail.Any(c => c.Email.Contains(tb_email.Text))) &&
                 (string.IsNullOrEmpty(tb_address.Text) || p.ContactAddress.Any(c => c.Address.Contains(tb_address.Text))) &&
                 (!groups.Any() || p.ContactGroup.Any(c => groups.Contains(c.GroupId)))
-                );
+                ).ToList();
             dataGV_person.Rows.Clear();
+            int cnt = res.Count();
+            if (cnt/20 != cb_Page.Items.Count - 1)
+            {
+                cb_Page.Items.Clear();
+                for (int i = 0; i <= cnt/20; i++)
+                {
+                    cb_Page.Items.Add(i + 1);
+                }
+                cb_Page.SelectedIndex = 0;
+            }
+            res = res.Skip(20 * cb_Page.SelectedIndex).Take(20).ToList();
             foreach (ContactPerson contactPerson in res)
             {
 
