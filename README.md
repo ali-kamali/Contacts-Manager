@@ -1,5 +1,10 @@
 # Contacts-Manager
-Simple Contacts Manager for farsi users
-You can donwload the last version.
-If you need something more please tell me.
+Simple Contacts Manager for farsi users using C#.net and SQLite
+## Quick start
+* [Download the latest release](https://github.com/ali-kamali/Contacts-Manager/releases/download/v1.0/ContactsManager.zip).
+
+
+## Bugs and feature requests
+Have a bug or a feature request? 
+[please open a new issue](https://github.com/ali-kamali/Contacts-Manager/issues/new)
 
