@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ContactsManager.Forms;
+using ContactsManager.Models;
+using ContactsManager.Utility;
 
 namespace ContactsManager
 {
@@ -54,27 +50,36 @@ namespace ContactsManager
             this.Focus();
         }
 
-        private void btn_export_Click(object sender, EventArgs e)
+        private void btn_Settings_Click(object sender, EventArgs e)
         {
-
+            var form = new Settings();
+            this.Hide();
+            form.ShowDialog();
+            this.Show();
+            this.Focus();
         }
-        private void btn_ClearAll_Click(object sender, EventArgs e)
+        
+
+        private void MainForm_Load(object sender, EventArgs e)
         {
-            if (MessageBox.Show("آیااز این کار مطمعن هستید؟", "هشدار", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MyConfigs.IsAppPassActive)
             {
-                ContactsEntities db = new ContactsEntities();
-                db.Database.ExecuteSqlCommand("delete from ContactAddress;");
-                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactAddress';");
-                db.Database.ExecuteSqlCommand("delete from ContactEmail;    ");
-                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactEmail';");
-                db.Database.ExecuteSqlCommand("delete from ContactGroup;    ");
-                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactGroup';");
-                db.Database.ExecuteSqlCommand("delete from ContactPerson;    ");
-                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactPerson';");
-                db.Database.ExecuteSqlCommand("delete from ContactPhone;    ");
-                db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactPhone';");
-                MessageBox.Show("پاک سازی با موفقیت انجام شد");
+                var conf = DynamicConfigs.GetConfigs();
+                var form = new Login(conf);
+                this.Hide();
+                if (form.ShowDialog() != DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    this.Show();
+                }
             }
         }
+
+    
+
+        
     }
 }

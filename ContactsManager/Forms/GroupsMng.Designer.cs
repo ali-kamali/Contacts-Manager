@@ -123,6 +123,7 @@
             // 
             // btn_close
             // 
+            this.btn_close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_close.Font = new System.Drawing.Font("B Nazanin", 14.25F);
             this.btn_close.Location = new System.Drawing.Point(204, 139);
             this.btn_close.Name = "btn_close";
@@ -144,8 +145,10 @@
             // 
             // GroupsMng
             // 
+            this.AcceptButton = this.btn_addGroup;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btn_close;
             this.ClientSize = new System.Drawing.Size(419, 294);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_close);

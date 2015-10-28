@@ -31,5 +31,6 @@ namespace ContactsManager
         public virtual DbSet<ContactGroupDef> ContactGroupDef { get; set; }
         public virtual DbSet<ContactPhone> ContactPhone { get; set; }
         public virtual DbSet<ContactPerson> ContactPerson { get; set; }
+        public virtual DbSet<Configs> Configs { get; set; }
     }
 }

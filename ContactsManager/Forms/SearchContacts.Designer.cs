@@ -43,12 +43,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tb_email = new System.Windows.Forms.TextBox();
             this.dataGV_person = new System.Windows.Forms.DataGridView();
-            this.btn_Search = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tb_postname = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cb_Page = new System.Windows.Forms.ComboBox();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +51,12 @@
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Group = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btn_Search = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_postname = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cb_Page = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_person)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -199,6 +199,71 @@
             this.dataGV_person.TabIndex = 21;
             this.dataGV_person.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGV_person_MouseDoubleClick);
             // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.id.HeaderText = "کد";
+            this.id.MinimumWidth = 20;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Width = 44;
+            // 
+            // FirstName
+            // 
+            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.FirstName.HeaderText = "نام";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            this.FirstName.Width = 45;
+            // 
+            // LastName
+            // 
+            this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.LastName.HeaderText = "نام خانوادگی";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            this.LastName.Width = 94;
+            // 
+            // postname
+            // 
+            this.postname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.postname.HeaderText = "سمت";
+            this.postname.Name = "postname";
+            this.postname.ReadOnly = true;
+            this.postname.Width = 54;
+            // 
+            // PhoneNumber
+            // 
+            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.PhoneNumber.DefaultCellStyle = dataGridViewCellStyle1;
+            this.PhoneNumber.HeaderText = "تلفن تماس";
+            this.PhoneNumber.Name = "PhoneNumber";
+            this.PhoneNumber.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Email.HeaderText = "رایانامه";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            this.Email.Width = 66;
+            // 
+            // Address
+            // 
+            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Address.HeaderText = "آدرس";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // Group
+            // 
+            this.Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Group.HeaderText = "گروه";
+            this.Group.Name = "Group";
+            this.Group.ReadOnly = true;
+            this.Group.Width = 56;
+            // 
             // btn_Search
             // 
             this.btn_Search.Font = new System.Drawing.Font("B Nazanin", 14.25F);
@@ -284,71 +349,6 @@
             this.cb_Page.Size = new System.Drawing.Size(87, 32);
             this.cb_Page.TabIndex = 27;
             // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.id.HeaderText = "کد";
-            this.id.MinimumWidth = 20;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Width = 44;
-            // 
-            // FirstName
-            // 
-            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.FirstName.HeaderText = "نام";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            this.FirstName.Width = 45;
-            // 
-            // LastName
-            // 
-            this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.LastName.HeaderText = "نام خانوادگی";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            this.LastName.Width = 94;
-            // 
-            // postname
-            // 
-            this.postname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.postname.HeaderText = "سمت";
-            this.postname.Name = "postname";
-            this.postname.ReadOnly = true;
-            this.postname.Width = 54;
-            // 
-            // PhoneNumber
-            // 
-            this.PhoneNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.PhoneNumber.DefaultCellStyle = dataGridViewCellStyle1;
-            this.PhoneNumber.HeaderText = "تلفن تماس";
-            this.PhoneNumber.Name = "PhoneNumber";
-            this.PhoneNumber.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Email.HeaderText = "رایانامه";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            this.Email.Width = 66;
-            // 
-            // Address
-            // 
-            this.Address.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Address.HeaderText = "آدرس";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // Group
-            // 
-            this.Group.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Group.HeaderText = "گروه";
-            this.Group.Name = "Group";
-            this.Group.ReadOnly = true;
-            this.Group.Width = 56;
-            // 
             // SearchContacts
             // 
             this.AcceptButton = this.btn_Search;
@@ -361,7 +361,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchContacts";
-            this.Text = "SearchContacts";
+            this.Text = "جست و جو مخاطبین";
             this.Load += new System.EventHandler(this.SearchContacts_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_person)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

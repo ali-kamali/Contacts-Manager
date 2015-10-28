@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using ContactsManager.Models;
 
 namespace ContactsManager.Utility
 {
-    public static class Configs
+    public static class MyConfigs
     {
        public static object[] CallType = {"شماره همراه",
             "شماره خانه",
@@ -26,29 +27,10 @@ namespace ContactsManager.Utility
            new DataModel(){ModelId = 9,Modelkey = DataModelKey.WorkEmail,ModelName = "رایانامه کاری"},
            new DataModel(){ModelId = 10,Modelkey = DataModelKey.HomeAddress,ModelName = "آدرس منزل"},
            new DataModel(){ModelId = 11,Modelkey = DataModelKey.WorkAddress,ModelName = "آدرس محل کار"},
-       }; 
-    }
-
-    public class DataModel
-    {
-        public int ModelId { get; set; }
-        public string ModelName { get; set; }
-        public DataModelKey Modelkey { get; set; }
-    }
-
-    public enum DataModelKey
-    {
-        None,
-        FirstName,
-        LastName,
-        PostName,
-        BirthDate,
-        MobilePhone,
-        HomePhone,
-        WorkPhone,
-        PersonalEmail,
-        WorkEmail,
-        HomeAddress,
-        WorkAddress,
+       };
+       public static string DbPassword = "BrA73S@yXn3mZ";
+       public static string AppVersion = "v1.0";
+       public static bool IsDbPassActive = false;
+       public static bool IsAppPassActive = false;
     }
 }

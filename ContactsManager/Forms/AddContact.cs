@@ -202,7 +202,7 @@ namespace ContactsManager.Forms
             ComboBox cbCalltype = new ComboBox();
             cbCalltype.Font = new Font("B Nazanin", 12F);
             cbCalltype.FormattingEnabled = true;
-            cbCalltype.Items.AddRange(Configs.CallType);
+            cbCalltype.Items.AddRange(MyConfigs.CallType);
             cbCalltype.Location = new Point(cb_Calltype.Location.X, 40 + _callnum * 35);
             cbCalltype.Name = "cb_Calltype" + _callnum;
             cbCalltype.RightToLeft = RightToLeft.Yes;
@@ -227,7 +227,7 @@ namespace ContactsManager.Forms
             ComboBox cbCalltype = new ComboBox();
             cbCalltype.Font = new Font("B Nazanin", 12F);
             cbCalltype.FormattingEnabled = true;
-            cbCalltype.Items.AddRange(Configs.EmailType);
+            cbCalltype.Items.AddRange(MyConfigs.EmailType);
             cbCalltype.Location = new Point(cb_Emailtype.Location.X, 40 + _emailnum * 35);
             cbCalltype.Name = "cb_emailtype" + _emailnum;
             cbCalltype.RightToLeft = RightToLeft.Yes;
@@ -252,7 +252,7 @@ namespace ContactsManager.Forms
             ComboBox cbCalltype = new ComboBox();
             cbCalltype.Font = new Font("B Nazanin", 12F);
             cbCalltype.FormattingEnabled = true;
-            cbCalltype.Items.AddRange(Configs.AddressType);
+            cbCalltype.Items.AddRange(MyConfigs.AddressType);
             cbCalltype.Location = new Point(cb_Addresstype.Location.X, 40 + _addressnum * 35);
             cbCalltype.Name = "cb_addresstype" + _addressnum;
             cbCalltype.RightToLeft = RightToLeft.Yes;

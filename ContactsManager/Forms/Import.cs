@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using ContactsManager.Models;
 using ContactsManager.Utility;
 using OfficeOpenXml;
 
@@ -58,7 +59,7 @@ namespace ContactsManager.Forms
         private void Import_Load(object sender, EventArgs e)
         {
             var col = (DataGridViewComboBoxColumn)dataGV_group.Columns[1];
-            col.DataSource = Configs.DataModels;
+            col.DataSource = MyConfigs.DataModels;
             col.ValueMember = "Modelkey";
             col.DisplayMember = "ModelName";
             btn_import.Enabled = false;

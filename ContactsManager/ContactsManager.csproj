@@ -78,6 +78,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configs.cs">
+      <DependentUpon>ModelContact.tt</DependentUpon>
+    </Compile>
     <Compile Include="ContactAddress.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
@@ -114,11 +117,23 @@
     <Compile Include="Forms\Import.Designer.cs">
       <DependentUpon>Import.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\SearchContacts.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SearchContacts.Designer.cs">
       <DependentUpon>SearchContacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -141,6 +156,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelContact.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\DynamicConfigs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -148,7 +165,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utility\Configs.cs" />
+    <Compile Include="Utility\MyConfigs.cs" />
     <EmbeddedResource Include="Forms\AddContact.resx">
       <DependentUpon>AddContact.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,8 +175,14 @@
     <EmbeddedResource Include="Forms\Import.resx">
       <DependentUpon>Import.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\SearchContacts.resx">
       <DependentUpon>SearchContacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -168,7 +191,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="ModelContact.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelContact.Designer.cs</LastGenOutput>
@@ -199,6 +224,11 @@
       <DependentUpon>ModelContact.edmx</DependentUpon>
       <LastGenOutput>ModelContact.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\1446062481_synchronize.png" />
+    <None Include="Resources\1446062121_data_encryption.png" />
+    <None Include="Resources\1446062099_delete_database.png" />
+    <None Include="Resources\1446057368_lock.png" />
+    <None Include="Resources\1446059487_engineering.png" />
     <None Include="Resources\1445637792_fine_print.png" />
     <None Include="Resources\1445637555_conference_call.png" />
     <None Include="Resources\1445637413_upload.png" />

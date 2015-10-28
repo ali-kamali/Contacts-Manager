@@ -41,6 +41,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.tb_call = new System.Windows.Forms.TextBox();
             this.panelCall = new System.Windows.Forms.Panel();
+            this.AddCall = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -49,31 +50,30 @@
             this.cb_Emailtype = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tb_Email = new System.Windows.Forms.TextBox();
+            this.AddEmail = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.panelAddress = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.cb_Addresstype = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tb_Address = new System.Windows.Forms.TextBox();
+            this.AddAddress = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.clb_Groups = new System.Windows.Forms.CheckedListBox();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_delete = new System.Windows.Forms.Button();
             this.tb_postname = new System.Windows.Forms.TextBox();
-            this.AddCall = new System.Windows.Forms.PictureBox();
-            this.AddEmail = new System.Windows.Forms.PictureBox();
-            this.AddAddress = new System.Windows.Forms.PictureBox();
             this.panelCall.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddCall)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.panelEmail.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddEmail)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.panelAddress.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.AddCall)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddAddress)).BeginInit();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tb_firstname
@@ -200,6 +200,17 @@
             this.panelCall.Size = new System.Drawing.Size(411, 209);
             this.panelCall.TabIndex = 13;
             // 
+            // AddCall
+            // 
+            this.AddCall.BackgroundImage = global::ContactsManager.Properties.Resources.plus;
+            this.AddCall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AddCall.Location = new System.Drawing.Point(57, 9);
+            this.AddCall.Name = "AddCall";
+            this.AddCall.Size = new System.Drawing.Size(31, 31);
+            this.AddCall.TabIndex = 12;
+            this.AddCall.TabStop = false;
+            this.AddCall.Click += new System.EventHandler(this.AddCall_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -295,6 +306,17 @@
             this.tb_Email.TabIndex = 10;
             this.tb_Email.Visible = false;
             // 
+            // AddEmail
+            // 
+            this.AddEmail.BackgroundImage = global::ContactsManager.Properties.Resources.plus;
+            this.AddEmail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AddEmail.Location = new System.Drawing.Point(57, 9);
+            this.AddEmail.Name = "AddEmail";
+            this.AddEmail.Size = new System.Drawing.Size(31, 31);
+            this.AddEmail.TabIndex = 12;
+            this.AddEmail.TabStop = false;
+            this.AddEmail.Click += new System.EventHandler(this.AddEmail_Click);
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.panelAddress);
@@ -363,6 +385,17 @@
             this.tb_Address.TabIndex = 10;
             this.tb_Address.Visible = false;
             // 
+            // AddAddress
+            // 
+            this.AddAddress.BackgroundImage = global::ContactsManager.Properties.Resources.plus;
+            this.AddAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.AddAddress.Location = new System.Drawing.Point(57, 9);
+            this.AddAddress.Name = "AddAddress";
+            this.AddAddress.Size = new System.Drawing.Size(31, 31);
+            this.AddAddress.TabIndex = 12;
+            this.AddAddress.TabStop = false;
+            this.AddAddress.Click += new System.EventHandler(this.AddAddress_Click);
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.clb_Groups);
@@ -415,41 +448,9 @@
             this.tb_postname.TabIndex = 16;
             this.tb_postname.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // AddCall
-            // 
-            this.AddCall.BackgroundImage = global::ContactsManager.Properties.Resources.plus;
-            this.AddCall.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AddCall.Location = new System.Drawing.Point(57, 9);
-            this.AddCall.Name = "AddCall";
-            this.AddCall.Size = new System.Drawing.Size(31, 31);
-            this.AddCall.TabIndex = 12;
-            this.AddCall.TabStop = false;
-            this.AddCall.Click += new System.EventHandler(this.AddCall_Click);
-            // 
-            // AddEmail
-            // 
-            this.AddEmail.BackgroundImage = global::ContactsManager.Properties.Resources.plus;
-            this.AddEmail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AddEmail.Location = new System.Drawing.Point(57, 9);
-            this.AddEmail.Name = "AddEmail";
-            this.AddEmail.Size = new System.Drawing.Size(31, 31);
-            this.AddEmail.TabIndex = 12;
-            this.AddEmail.TabStop = false;
-            this.AddEmail.Click += new System.EventHandler(this.AddEmail_Click);
-            // 
-            // AddAddress
-            // 
-            this.AddAddress.BackgroundImage = global::ContactsManager.Properties.Resources.plus;
-            this.AddAddress.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.AddAddress.Location = new System.Drawing.Point(57, 9);
-            this.AddAddress.Name = "AddAddress";
-            this.AddAddress.Size = new System.Drawing.Size(31, 31);
-            this.AddAddress.TabIndex = 12;
-            this.AddAddress.TabStop = false;
-            this.AddAddress.Click += new System.EventHandler(this.AddAddress_Click);
-            // 
             // AddContact
             // 
+            this.AcceptButton = this.btn_add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(452, 426);
@@ -470,18 +471,18 @@
             this.Load += new System.EventHandler(this.AddContact_Load);
             this.panelCall.ResumeLayout(false);
             this.panelCall.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddCall)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.panelEmail.ResumeLayout(false);
             this.panelEmail.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.AddEmail)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.panelAddress.ResumeLayout(false);
             this.panelAddress.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.AddCall)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.AddEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AddAddress)).EndInit();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

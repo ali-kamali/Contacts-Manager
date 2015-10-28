@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ContactsModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=C:\Users\kamali\Desktop\Contacts.db" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Configs">
+          <Key>
+            <PropertyRef Name="ConfigKey" />
+          </Key>
+          <Property Name="ConfigKey" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ConfigValue" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="ContactAddress">
           <Key>
             <PropertyRef Name="Id" />
@@ -119,6 +126,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ContactsModelStoreContainer">
+          <EntitySet Name="Configs" EntityType="Self.Configs" store:Type="Tables" />
           <EntitySet Name="ContactAddress" EntityType="Self.ContactAddress" store:Type="Tables" />
           <EntitySet Name="ContactEmail" EntityType="Self.ContactEmail" store:Type="Tables" />
           <EntitySet Name="ContactGroup" EntityType="Self.ContactGroup" store:Type="Tables" />
@@ -177,6 +185,7 @@
             <End Role="ContactPerson" EntitySet="ContactPerson" />
             <End Role="ContactPhone" EntitySet="ContactPhone" />
           </AssociationSet>
+          <EntitySet Name="Configs" EntityType="ContactsModel.Configs" />
         </EntityContainer>
         <EntityType Name="ContactAddress">
           <Key>
@@ -301,6 +310,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Configs">
+          <Key>
+            <PropertyRef Name="ConfigKey" />
+          </Key>
+          <Property Name="ConfigKey" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ConfigValue" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -363,6 +379,14 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configs">
+            <EntityTypeMapping TypeName="ContactsModel.Configs">
+              <MappingFragment StoreEntitySet="Configs">
+                <ScalarProperty Name="ConfigValue" ColumnName="ConfigValue" />
+                <ScalarProperty Name="ConfigKey" ColumnName="ConfigKey" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
