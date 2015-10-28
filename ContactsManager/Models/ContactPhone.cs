@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ContactsManager
+namespace ContactsManager.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ContactGroup
+    public partial class ContactPhone
     {
         public long Id { get; set; }
-        public long GroupId { get; set; }
+        public string PhoneNumber { get; set; }
+        public long PhoneType { get; set; }
         public long ContactPersonID { get; set; }
     
-        public virtual ContactGroupDef ContactGroupDef { get; set; }
         public virtual ContactPerson ContactPerson { get; set; }
     }
 }

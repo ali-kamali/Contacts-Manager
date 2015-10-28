@@ -7,18 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ContactsManager
+namespace ContactsManager.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class ContactAddress
+    public partial class Configs
     {
-        public long Id { get; set; }
-        public string Address { get; set; }
-        public long AddressType { get; set; }
-        public long ContactPersonID { get; set; }
-    
-        public virtual ContactPerson ContactPerson { get; set; }
+        public string ConfigKey { get; set; }
+        public string ConfigValue { get; set; }
     }
 }

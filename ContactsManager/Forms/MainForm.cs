@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using ContactsManager.Forms;
 using ContactsManager.Models;
 using ContactsManager.Utility;
 
-namespace ContactsManager
+namespace ContactsManager.Forms
 {
     public partial class MainForm : Form
     {
@@ -38,7 +37,6 @@ namespace ContactsManager
             form.ShowDialog();
             this.Show();
             this.Focus();
-
         }
 
         private void btn_import_Click(object sender, EventArgs e)
@@ -58,7 +56,7 @@ namespace ContactsManager
             this.Show();
             this.Focus();
         }
-        
+
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -77,9 +75,5 @@ namespace ContactsManager
                 }
             }
         }
-
-    
-
-        
     }
 }

@@ -22,6 +22,7 @@ namespace ContactsManager.Forms
         private Thread _t;
         private List<ContactGroup> _contactGroups;
         private List<DataModelKey> _dataModels;
+
         public Import()
         {
             InitializeComponent();
@@ -43,14 +44,15 @@ namespace ContactsManager.Forms
                         if (workBook.Worksheets.Count > 0)
                         {
                             ExcelWorksheet currentWorksheet = workBook.Worksheets.First();
-                            foreach (var firstRowCell in currentWorksheet.Cells[1, 1, 1, currentWorksheet.Dimension.End.Column])
+                            foreach (
+                                var firstRowCell in
+                                    currentWorksheet.Cells[1, 1, 1, currentWorksheet.Dimension.End.Column])
                             {
                                 dataGV_group.Rows.Add(firstRowCell.Text, DataModelKey.None);
                             }
                             FilepathString = fl.FileName;
                             btn_import.Enabled = true;
                         }
-
                     }
                 }
             }
@@ -58,7 +60,7 @@ namespace ContactsManager.Forms
 
         private void Import_Load(object sender, EventArgs e)
         {
-            var col = (DataGridViewComboBoxColumn)dataGV_group.Columns[1];
+            var col = (DataGridViewComboBoxColumn) dataGV_group.Columns[1];
             col.DataSource = MyConfigs.DataModels;
             col.ValueMember = "Modelkey";
             col.DisplayMember = "ModelName";
@@ -74,8 +76,10 @@ namespace ContactsManager.Forms
 
         private void btn_import_Click(object sender, EventArgs e)
         {
-            _contactGroups = (from ContactGroupDef g in clb_Groups.SelectedItems select new ContactGroup() { GroupId = g.Id }).ToList();
-            _dataModels = (from DataGridViewRow row in dataGV_group.Rows select (DataModelKey)row.Cells[1].Value).ToList();
+            _contactGroups =
+                (from ContactGroupDef g in clb_Groups.SelectedItems select new ContactGroup() {GroupId = g.Id}).ToList();
+            _dataModels =
+                (from DataGridViewRow row in dataGV_group.Rows select (DataModelKey) row.Cells[1].Value).ToList();
             _t = new Thread(import);
             if (!_t.IsAlive)
                 _t.Start();
@@ -84,10 +88,9 @@ namespace ContactsManager.Forms
 
         private void import()
         {
-
             ContactsEntities db = new ContactsEntities();
             int cnt = 0;
-            
+
             var now = DateTime.Now;
             var existingFile = new FileInfo(FilepathString);
             using (var package = new ExcelPackage(existingFile))
@@ -104,15 +107,17 @@ namespace ContactsManager.Forms
                         for (int i = 2; i <= currentWorksheet.Dimension.End.Row; i++)
                         {
                             int col = 0;
-                            SetControlPropertyValue(L_per, "Text", "%" + ((float) cnt * 100 / currentWorksheet.Dimension.End.Row).ToString("00.00"));
+                            SetControlPropertyValue(L_per, "Text",
+                                "%" + ((float) cnt*100/currentWorksheet.Dimension.End.Row).ToString("00.00"));
                             SetControlPropertyValue(L_cnt, "Text", cnt.ToString());
                             cnt++;
-                            
+
                             ContactPerson person = new ContactPerson();
                             List<ContactPhone> contactPhones = new List<ContactPhone>();
                             List<ContactEmail> contactEmails = new List<ContactEmail>();
                             List<ContactAddress> contactAddresses = new List<ContactAddress>();
-                            foreach (var rowCell in currentWorksheet.Cells[i, 1, i, currentWorksheet.Dimension.End.Column])
+                            foreach (
+                                var rowCell in currentWorksheet.Cells[i, 1, i, currentWorksheet.Dimension.End.Column])
                             {
                                 string value = rowCell.Text;
                                 if (!string.IsNullOrEmpty(value) && col < _dataModels.Count)
@@ -134,25 +139,25 @@ namespace ContactsManager.Forms
                                             person.DateOfBirth = birthdate;
                                             break;
                                         case DataModelKey.MobilePhone:
-                                            contactPhones.Add(new ContactPhone() { PhoneType = 0, PhoneNumber = value });
+                                            contactPhones.Add(new ContactPhone() {PhoneType = 0, PhoneNumber = value});
                                             break;
                                         case DataModelKey.HomePhone:
-                                            contactPhones.Add(new ContactPhone() { PhoneType = 1, PhoneNumber = value });
+                                            contactPhones.Add(new ContactPhone() {PhoneType = 1, PhoneNumber = value});
                                             break;
                                         case DataModelKey.WorkPhone:
-                                            contactPhones.Add(new ContactPhone() { PhoneType = 2, PhoneNumber = value });
+                                            contactPhones.Add(new ContactPhone() {PhoneType = 2, PhoneNumber = value});
                                             break;
                                         case DataModelKey.PersonalEmail:
-                                            contactEmails.Add(new ContactEmail() { EmailType = 0, Email = value });
+                                            contactEmails.Add(new ContactEmail() {EmailType = 0, Email = value});
                                             break;
                                         case DataModelKey.WorkEmail:
-                                            contactEmails.Add(new ContactEmail() { EmailType = 1, Email = value });
+                                            contactEmails.Add(new ContactEmail() {EmailType = 1, Email = value});
                                             break;
                                         case DataModelKey.HomeAddress:
-                                            contactAddresses.Add(new ContactAddress() { AddressType = 0, Address = value });
+                                            contactAddresses.Add(new ContactAddress() {AddressType = 0, Address = value});
                                             break;
                                         case DataModelKey.WorkAddress:
-                                            contactAddresses.Add(new ContactAddress() { AddressType = 1, Address = value });
+                                            contactAddresses.Add(new ContactAddress() {AddressType = 1, Address = value});
                                             break;
                                     }
                                 }
@@ -194,15 +199,16 @@ namespace ContactsManager.Forms
             }
             MessageBox.Show(cnt + " Added in " + DateTime.Now.Subtract(now).TotalSeconds + " Secs");
             SetControlPropertyValue(btn_import, "Enabled", true);
-            
         }
-        delegate void SetControlValueCallback(Control oControl, string propName, object propValue);
+
+        private delegate void SetControlValueCallback(Control oControl, string propName, object propValue);
+
         private void SetControlPropertyValue(Control oControl, string propName, object propValue)
         {
             if (oControl.InvokeRequired)
             {
                 SetControlValueCallback d = SetControlPropertyValue;
-                oControl.Invoke(d, new object[] { oControl, propName, propValue });
+                oControl.Invoke(d, new object[] {oControl, propName, propValue});
             }
             else
             {
@@ -217,7 +223,8 @@ namespace ContactsManager.Forms
                 }
             }
         }
-        void Import_FormClosing(object sender, FormClosingEventArgs e)
+
+        private void Import_FormClosing(object sender, FormClosingEventArgs e)
         {
             try
             {
@@ -226,10 +233,7 @@ namespace ContactsManager.Forms
             }
             catch (Exception)
             {
-
-
             }
-
         }
     }
 }

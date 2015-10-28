@@ -10,8 +10,8 @@ namespace ContactsManager.Models
 
         public static DynamicConfigs GetConfigs()
         {
-            var conf=new DynamicConfigs();
-            ContactsEntities db=new ContactsEntities();
+            var conf = new DynamicConfigs();
+            ContactsEntities db = new ContactsEntities();
             foreach (Configs configse in db.Configs.ToList())
             {
                 switch (configse.ConfigKey.ToLower())
@@ -30,5 +30,4 @@ namespace ContactsManager.Models
             return conf;
         }
     }
-
 }

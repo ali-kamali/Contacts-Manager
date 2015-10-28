@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ContactsManager.Models;
 using ContactsManager.Utility;
 
 namespace ContactsManager.Forms
@@ -9,21 +10,23 @@ namespace ContactsManager.Forms
     public partial class AddContact : Form
     {
         private int _callnum, _emailnum, _addressnum, _contactid;
-        public AddContact(int contactid=0)
+
+        public AddContact(int contactid = 0)
         {
             InitializeComponent();
             _contactid = contactid;
         }
+
         private void AddContact_Load(object sender, EventArgs e)
         {
             ContactsEntities db = new ContactsEntities();
-            var g= db.ContactGroupDef.ToList();
+            var g = db.ContactGroupDef.ToList();
             foreach (ContactGroupDef contactGroupDef in g)
             {
                 clb_Groups.Items.Add(contactGroupDef);
             }
             clb_Groups.DisplayMember = "GroupName";
-            if(_contactid>0)
+            if (_contactid > 0)
                 LoadContact(_contactid);
         }
 
@@ -58,10 +61,9 @@ namespace ContactsManager.Forms
                     foreach (ContactGroupDef cGroup in db.ContactGroupDef.ToList())
                     {
                         if (cGroup.Id == contactGroup.GroupId)
-                            clb_Groups.SetItemChecked(index,true);
+                            clb_Groups.SetItemChecked(index, true);
                         index++;
                     }
-                     
                 }
             }
             else
@@ -69,11 +71,11 @@ namespace ContactsManager.Forms
                 MessageBox.Show("مخاطبی یافت نشد");
                 this.Close();
             }
-            
         }
+
         private void btn_add_Click(object sender, EventArgs e)
         {
-            ContactsEntities db=new ContactsEntities();
+            ContactsEntities db = new ContactsEntities();
             if (_contactid > 0)
             {
                 var con = db.ContactPerson.FirstOrDefault(p => p.Id == _contactid);
@@ -87,14 +89,13 @@ namespace ContactsManager.Forms
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactEmail WHERE ContactPersonID=" + _contactid);
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactGroup WHERE ContactPersonID=" + _contactid);
                 }
-
             }
 
             int b;
             int.TryParse(tb_Birthdate.Text, out b);
-            ContactPerson per=new ContactPerson()
+            ContactPerson per = new ContactPerson()
             {
-                FirstName =tb_firstname.Text,
+                FirstName = tb_firstname.Text,
                 LastName = tb_LastName.Text,
                 PostName = tb_postname.Text,
                 DateOfBirth = b
@@ -106,8 +107,8 @@ namespace ContactsManager.Forms
             {
                 if (panelCall.Controls.Find("tb_call" + i, false).Any())
                 {
-                    var tb = (TextBox)(panelCall.Controls.Find("tb_call" + i, false))[0];
-                    var cb = (ComboBox)(panelCall.Controls.Find("cb_Calltype" + i, false))[0];
+                    var tb = (TextBox) (panelCall.Controls.Find("tb_call" + i, false))[0];
+                    var cb = (ComboBox) (panelCall.Controls.Find("cb_Calltype" + i, false))[0];
                     if (!string.IsNullOrEmpty(tb.Text))
                     {
                         db.ContactPhone.Add(new ContactPhone()
@@ -118,14 +119,13 @@ namespace ContactsManager.Forms
                         });
                     }
                 }
-                
             }
             for (int i = 0; i < _emailnum; i++)
             {
                 if (panelEmail.Controls.Find("tb_email" + i, false).Any())
                 {
-                    var tb = (TextBox)(panelEmail.Controls.Find("tb_email" + i, false))[0];
-                    var cb = (ComboBox)(panelEmail.Controls.Find("cb_emailtype" + i, false))[0];
+                    var tb = (TextBox) (panelEmail.Controls.Find("tb_email" + i, false))[0];
+                    var cb = (ComboBox) (panelEmail.Controls.Find("cb_emailtype" + i, false))[0];
                     if (!string.IsNullOrEmpty(tb.Text))
                     {
                         db.ContactEmail.Add(new ContactEmail()
@@ -136,14 +136,13 @@ namespace ContactsManager.Forms
                         });
                     }
                 }
-
             }
             for (int i = 0; i < _addressnum; i++)
             {
                 if (panelAddress.Controls.Find("tb_address" + i, false).Any())
                 {
-                    var tb = (TextBox)(panelAddress.Controls.Find("tb_address" + i, false))[0];
-                    var cb = (ComboBox)(panelAddress.Controls.Find("cb_addresstype" + i, false))[0];
+                    var tb = (TextBox) (panelAddress.Controls.Find("tb_address" + i, false))[0];
+                    var cb = (ComboBox) (panelAddress.Controls.Find("cb_addresstype" + i, false))[0];
                     if (!string.IsNullOrEmpty(tb.Text))
                     {
                         db.ContactAddress.Add(new ContactAddress()
@@ -170,14 +169,12 @@ namespace ContactsManager.Forms
             this.Close();
         }
 
-        
 
         private void AddCall_Click(object sender, EventArgs e)
         {
             AddCallBox();
         }
 
-        
 
         private void AddEmail_Click(object sender, EventArgs e)
         {
@@ -193,9 +190,9 @@ namespace ContactsManager.Forms
         {
             TextBox tbCall = new TextBox();
             tbCall.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            tbCall.Location = new Point(tb_call.Location.X, 40 + _callnum * 35);
+            tbCall.Location = new Point(tb_call.Location.X, 40 + _callnum*35);
             tbCall.Name = "tb_call" + _callnum;
-            tbCall.Size = tb_call.Size;//new Size(146, 31);
+            tbCall.Size = tb_call.Size; //new Size(146, 31);
             tbCall.TabIndex = 10;
             tbCall.Text = value;
 
@@ -203,7 +200,7 @@ namespace ContactsManager.Forms
             cbCalltype.Font = new Font("B Nazanin", 12F);
             cbCalltype.FormattingEnabled = true;
             cbCalltype.Items.AddRange(MyConfigs.CallType);
-            cbCalltype.Location = new Point(cb_Calltype.Location.X, 40 + _callnum * 35);
+            cbCalltype.Location = new Point(cb_Calltype.Location.X, 40 + _callnum*35);
             cbCalltype.Name = "cb_Calltype" + _callnum;
             cbCalltype.RightToLeft = RightToLeft.Yes;
             cbCalltype.Size = cb_Calltype.Size; //new Size(100, 32);
@@ -218,9 +215,9 @@ namespace ContactsManager.Forms
         {
             TextBox tbCall = new TextBox();
             tbCall.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            tbCall.Location = new Point(tb_Email.Location.X, 40 + _emailnum * 35);
+            tbCall.Location = new Point(tb_Email.Location.X, 40 + _emailnum*35);
             tbCall.Name = "tb_email" + _emailnum;
-            tbCall.Size = tb_Email.Size;//new Size(146, 31);
+            tbCall.Size = tb_Email.Size; //new Size(146, 31);
             tbCall.TabIndex = 10;
             tbCall.Text = value;
 
@@ -228,7 +225,7 @@ namespace ContactsManager.Forms
             cbCalltype.Font = new Font("B Nazanin", 12F);
             cbCalltype.FormattingEnabled = true;
             cbCalltype.Items.AddRange(MyConfigs.EmailType);
-            cbCalltype.Location = new Point(cb_Emailtype.Location.X, 40 + _emailnum * 35);
+            cbCalltype.Location = new Point(cb_Emailtype.Location.X, 40 + _emailnum*35);
             cbCalltype.Name = "cb_emailtype" + _emailnum;
             cbCalltype.RightToLeft = RightToLeft.Yes;
             cbCalltype.Size = cb_Emailtype.Size; //new Size(100, 32);
@@ -243,9 +240,9 @@ namespace ContactsManager.Forms
         {
             TextBox tbCall = new TextBox();
             tbCall.Font = new Font("B Nazanin", 12F, FontStyle.Regular, GraphicsUnit.Point, 178);
-            tbCall.Location = new Point(tb_Address.Location.X, 40 + _addressnum * 35);
+            tbCall.Location = new Point(tb_Address.Location.X, 40 + _addressnum*35);
             tbCall.Name = "tb_address" + _addressnum;
-            tbCall.Size = tb_Address.Size;//new Size(146, 31);
+            tbCall.Size = tb_Address.Size; //new Size(146, 31);
             tbCall.TabIndex = 10;
             tbCall.Text = value;
 
@@ -253,7 +250,7 @@ namespace ContactsManager.Forms
             cbCalltype.Font = new Font("B Nazanin", 12F);
             cbCalltype.FormattingEnabled = true;
             cbCalltype.Items.AddRange(MyConfigs.AddressType);
-            cbCalltype.Location = new Point(cb_Addresstype.Location.X, 40 + _addressnum * 35);
+            cbCalltype.Location = new Point(cb_Addresstype.Location.X, 40 + _addressnum*35);
             cbCalltype.Name = "cb_addresstype" + _addressnum;
             cbCalltype.RightToLeft = RightToLeft.Yes;
             cbCalltype.Size = cb_Addresstype.Size; //new Size(100, 32);
@@ -281,7 +278,6 @@ namespace ContactsManager.Forms
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactEmail WHERE ContactPersonID=" + _contactid);
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactGroup WHERE ContactPersonID=" + _contactid);
                 }
-
             }
             MessageBox.Show("تغییرات خواسته شده اعمال شد");
             this.Close();

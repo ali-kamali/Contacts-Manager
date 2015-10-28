@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Specialized;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using ContactsManager.Models;
 using ContactsManager.Utility;
 
 namespace ContactsManager.Forms
@@ -19,15 +20,15 @@ namespace ContactsManager.Forms
         {
             if (tb_newpass.Text.Length < 5)
             {
-                MessageBox.Show("رمز عبور باید حداقل 4 حرف باشد");
+                MessageBox.Show(@"رمز عبور باید حداقل 4 حرف باشد");
             }
             if (tb_newpass.Text != tb_newpass2.Text)
             {
-                MessageBox.Show("رمز عبور جدید با تکرار آن مطابقت ندارد");
+                MessageBox.Show(@"رمز عبور جدید با تکرار آن مطابقت ندارد");
             }
             else
             {
-                ContactsEntities db=new ContactsEntities();
+                ContactsEntities db = new ContactsEntities();
                 var pcon = db.Configs.FirstOrDefault(p => p.ConfigKey == "Password");
                 if (pcon != null)
                 {
@@ -67,7 +68,7 @@ namespace ContactsManager.Forms
 
         private void btn_ClearAll_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("آیااز این کار مطمعن هستید؟", "هشدار", MessageBoxButtons.YesNo
+            if (MessageBox.Show(@"آیااز این کار مطمعن هستید؟", @"هشدار", MessageBoxButtons.YesNo
                 , MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 ContactsEntities db = new ContactsEntities();
@@ -81,7 +82,7 @@ namespace ContactsManager.Forms
                 db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactPerson';");
                 db.Database.ExecuteSqlCommand("delete from ContactPhone;    ");
                 db.Database.ExecuteSqlCommand("delete from sqlite_sequence where name='ContactPhone';");
-                MessageBox.Show("پاک سازی با موفقیت انجام شد");
+                MessageBox.Show(@"پاک سازی با موفقیت انجام شد");
             }
         }
 
@@ -99,33 +100,34 @@ namespace ContactsManager.Forms
                 if (line != null)
                 {
                     version = line.Replace("\"tag_name\":", "").Replace("\"", "").Replace(" ", "").Replace(",", "");
-                    
                 }
                 line = data.Split('\n').FirstOrDefault(p => p.Contains("browser_download_url"));
                 if (line != null)
                 {
-                    downloadlink = line.Replace("\"browser_download_url\":", "").Replace("\"", "").Replace(" ", "").Replace(",", "");
-
+                    downloadlink =
+                        line.Replace("\"browser_download_url\":", "")
+                            .Replace("\"", "")
+                            .Replace(" ", "")
+                            .Replace(",", "");
                 }
                 if (MyConfigs.AppVersion != version)
                 {
                     if (
-                        MessageBox.Show("نسخه جدیدی از نرم افزار موجود می باشد آیا مایل به دریافت آن می باشد؟",
-                            "بروز رسانی", MessageBoxButtons.YesNo
+                        MessageBox.Show(@"نسخه جدیدی از نرم افزار موجود می باشد آیا مایل به دریافت آن می باشد؟",
+                            @"بروز رسانی", MessageBoxButtons.YesNo
                             , MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        System.Diagnostics.Process.Start(downloadlink); 
+                        Process.Start(downloadlink);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("شما از آخرین نسخه این نرم افزار استفاده می نمایید");
+                    MessageBox.Show(@"شما از آخرین نسخه این نرم افزار استفاده می نمایید");
                 }
-
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("خطایی در ارتباط با سرور پیش آمده است لطفا مجددا تلاش نمایید");
+                MessageBox.Show(@"خطایی در ارتباط با سرور پیش آمده است لطفا مجددا تلاش نمایید");
             }
         }
     }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ContactsManager
+namespace ContactsManager.Models
 {
     using System;
     using System.Data.Entity;

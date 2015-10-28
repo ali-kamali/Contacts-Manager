@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using ContactsManager.Models;
 
 namespace ContactsManager.Forms
 {
@@ -24,7 +20,7 @@ namespace ContactsManager.Forms
         public void LoadGroup()
         {
             dataGV_group.Rows.Clear();
-            ContactsEntities db=new ContactsEntities();
+            ContactsEntities db = new ContactsEntities();
             foreach (ContactGroupDef contactGroupDef in db.ContactGroupDef.ToList())
             {
                 dataGV_group.Rows.Add(new object[]
@@ -58,7 +54,7 @@ namespace ContactsManager.Forms
                 if (int.TryParse(selectedRow.Cells[0].Value.ToString(), out groupid))
                 {
                     ContactsEntities db = new ContactsEntities();
-                    db.Database.ExecuteSqlCommand("DELETE FROM ContactGroupDef WHERE Id="+groupid);
+                    db.Database.ExecuteSqlCommand("DELETE FROM ContactGroupDef WHERE Id=" + groupid);
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactGroup WHERE GroupId=" + groupid);
                     db.SaveChanges();
                     LoadGroup();
@@ -69,7 +65,8 @@ namespace ContactsManager.Forms
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            this.Close();;
+            this.Close();
+            ;
         }
     }
 }

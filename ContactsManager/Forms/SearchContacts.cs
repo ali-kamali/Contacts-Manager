@@ -6,26 +6,29 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ContactsManager.Models;
 
 namespace ContactsManager.Forms
 {
     public partial class SearchContacts : Form
     {
         private List<ContactPerson> _allperson;
+
         public SearchContacts()
         {
             InitializeComponent();
         }
+
         private void SearchContacts_Load(object sender, EventArgs e)
         {
-            ContactsEntities db=new ContactsEntities();
+            ContactsEntities db = new ContactsEntities();
             var g = db.ContactGroupDef.ToList();
             foreach (ContactGroupDef contactGroupDef in g)
             {
                 clb_Groups.Items.Add(contactGroupDef);
             }
             clb_Groups.DisplayMember = "GroupName";
-            _allperson=db.ContactPerson.ToList();
+            _allperson = db.ContactPerson.ToList();
         }
 
         private void btn_Search_Click(object sender, EventArgs e)
@@ -35,7 +38,8 @@ namespace ContactsManager.Forms
 
         private void Search()
         {
-            List<long> groups = (from object item in clb_Groups.SelectedItems select ((ContactGroupDef)item).Id).ToList();
+            List<long> groups =
+                (from object item in clb_Groups.SelectedItems select ((ContactGroupDef) item).Id).ToList();
             var res = _allperson.Where(p =>
                 (string.IsNullOrEmpty(tb_firstname.Text) || Convert.ToString(p.FirstName).Contains(tb_firstname.Text)) &&
                 (string.IsNullOrEmpty(tb_LastName.Text) || Convert.ToString(p.LastName).Contains(tb_LastName.Text)) &&
@@ -56,22 +60,24 @@ namespace ContactsManager.Forms
                 }
                 cb_Page.SelectedIndex = 0;
             }
-            res = res.Skip(20 * cb_Page.SelectedIndex).Take(20).ToList();
+            res = res.Skip(20*cb_Page.SelectedIndex).Take(20).ToList();
             foreach (ContactPerson contactPerson in res)
             {
-
-                string phone = contactPerson.ContactPhone.Aggregate("", (current, item) => current + (item.PhoneNumber + "\n"));
+                string phone = contactPerson.ContactPhone.Aggregate("",
+                    (current, item) => current + (item.PhoneNumber + "\n"));
                 if (phone.Length > 0)
                     phone = phone.Substring(0, phone.Length - 1);
                 string email = contactPerson.ContactEmail.Aggregate("", (current, item) => current + (item.Email + "\n"));
                 if (email.Length > 0)
                     email = email.Substring(0, email.Length - 1);
 
-                string address = contactPerson.ContactAddress.Aggregate("", (current, item) => current + (item.Address + "\n"));
+                string address = contactPerson.ContactAddress.Aggregate("",
+                    (current, item) => current + (item.Address + "\n"));
                 if (address.Length > 0)
                     address = address.Substring(0, address.Length - 1);
 
-                string group = contactPerson.ContactGroup.Aggregate("", (current, item) => current + (item.ContactGroupDef.GroupName + "\n"));
+                string group = contactPerson.ContactGroup.Aggregate("",
+                    (current, item) => current + (item.ContactGroupDef.GroupName + "\n"));
                 if (group.Length > 0)
                     group = group.Substring(0, group.Length - 1);
 
@@ -105,7 +111,5 @@ namespace ContactsManager.Forms
                 Search();
             }
         }
-
-        
     }
 }

@@ -36,7 +36,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>1445288172_contacts.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\1445288172_contacts.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -78,25 +78,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configs.cs">
+    <Compile Include="Models\Configs.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactAddress.cs">
+    <Compile Include="Models\ContactAddress.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactEmail.cs">
+    <Compile Include="Models\ContactEmail.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactGroup.cs">
+    <Compile Include="Models\ContactGroup.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactGroupDef.cs">
+    <Compile Include="Models\ContactGroupDef.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactPerson.cs">
+    <Compile Include="Models\ContactPerson.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContactPhone.cs">
+    <Compile Include="Models\ContactPhone.cs">
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
     <Compile Include="Forms\AddContact.cs">
@@ -135,23 +135,23 @@
     <Compile Include="Forms\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModelContact.Context.cs">
+    <Compile Include="Models\ModelContact.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelContact.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelContact.cs">
+    <Compile Include="Models\ModelContact.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelContact.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModelContact.Designer.cs">
+    <Compile Include="Models\ModelContact.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelContact.edmx</DependentUpon>
@@ -184,7 +184,7 @@
     <EmbeddedResource Include="Forms\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -194,11 +194,11 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="ModelContact.edmx">
+    <EntityDeploy Include="Models\ModelContact.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelContact.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="ModelContact.edmx.diagram">
+    <None Include="Models\ModelContact.edmx.diagram">
       <DependentUpon>ModelContact.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -213,13 +213,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="1445288172_contacts.ico" />
-    <Content Include="ModelContact.Context.tt">
+    <Content Include="Resources\1445288172_contacts.ico" />
+    <Content Include="Models\ModelContact.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelContact.edmx</DependentUpon>
       <LastGenOutput>ModelContact.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="ModelContact.tt">
+    <Content Include="Models\ModelContact.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ModelContact.edmx</DependentUpon>
       <LastGenOutput>ModelContact.cs</LastGenOutput>
