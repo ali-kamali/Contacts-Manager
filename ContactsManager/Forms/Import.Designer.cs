@@ -202,7 +202,7 @@
             this.Controls.Add(this.btn_selectfile);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Import";
-            this.Text = "برون ریزی";
+            this.Text = "درون ریزی";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Import_FormClosing);
             this.Load += new System.EventHandler(this.Import_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_group)).EndInit();

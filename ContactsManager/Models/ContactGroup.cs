@@ -18,7 +18,7 @@ namespace ContactsManager.Models
         public long GroupId { get; set; }
         public long ContactPersonID { get; set; }
     
-        public virtual ContactGroupDef ContactGroupDef { get; set; }
         public virtual ContactPerson ContactPerson { get; set; }
+        public virtual ContactGroupDef ContactGroupDef { get; set; }
     }
 }

@@ -4,17 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a514874708274b4b9c2451b1c5d53767" Name="Diagram1" ZoomLevel="86">
-        <EntityTypeShape EntityType="ContactsModel.ContactAddress" Width="1.5" PointX="3" PointY="8.125" />
-        <EntityTypeShape EntityType="ContactsModel.ContactGroup" Width="1.5" PointX="3" PointY="2.375" />
-        <EntityTypeShape EntityType="ContactsModel.ContactGroupDef" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="ContactsModel.ContactPhone" Width="1.5" PointX="3" PointY="5.375" />
-        <AssociationConnector Association="ContactsModel.FK_ContactGroup_1_0" />
+      <Diagram DiagramId="3839f77cd62946fd85b13b9f79ae77a1" Name="Diagram1">
+        <EntityTypeShape EntityType="ContactsModel.Configs" Width="1.5" PointX="5.75" PointY="2" />
+        <EntityTypeShape EntityType="ContactsModel.ContactAddress" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="ContactsModel.ContactEmail" Width="1.5" PointX="3" PointY="6.625" />
+        <EntityTypeShape EntityType="ContactsModel.ContactGroup" Width="1.5" PointX="6" PointY="6.625" />
+        <EntityTypeShape EntityType="ContactsModel.ContactGroupDef" Width="1.5" PointX="3.75" PointY="0.75" />
         <EntityTypeShape EntityType="ContactsModel.ContactPerson" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="ContactsModel.ContactPhone" Width="1.5" PointX="3" PointY="12.125" />
         <AssociationConnector Association="ContactsModel.FK_ContactAddress_0_0" />
+        <AssociationConnector Association="ContactsModel.FK_ContactEmail_0_0" />
         <AssociationConnector Association="ContactsModel.FK_ContactGroup_0_0" />
+        <AssociationConnector Association="ContactsModel.FK_ContactGroup_1_0" />
         <AssociationConnector Association="ContactsModel.FK_ContactPhone_0_0" />
-        <EntityTypeShape EntityType="ContactsModel.Configs" Width="1.5" PointX="5" PointY="2.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -42,7 +42,7 @@ namespace ContactsManager.Utility
 
         public static string DbPassword = "BrA73S@yXn3mZ";
         public static string AppVersion = "v1.0";
-        public static bool IsDbPassActive = false;
-        public static bool IsAppPassActive = false;
+        public static bool IsDbPassActive = true;
+        public static bool IsAppPassActive = true;
     }
 }

@@ -25,12 +25,12 @@ namespace ContactsManager.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Configs> Configs { get; set; }
         public virtual DbSet<ContactAddress> ContactAddress { get; set; }
         public virtual DbSet<ContactEmail> ContactEmail { get; set; }
         public virtual DbSet<ContactGroup> ContactGroup { get; set; }
         public virtual DbSet<ContactGroupDef> ContactGroupDef { get; set; }
-        public virtual DbSet<ContactPhone> ContactPhone { get; set; }
         public virtual DbSet<ContactPerson> ContactPerson { get; set; }
-        public virtual DbSet<Configs> Configs { get; set; }
+        public virtual DbSet<ContactPhone> ContactPhone { get; set; }
     }
 }

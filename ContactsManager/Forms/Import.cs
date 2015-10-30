@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Globalization;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using ContactsManager.Models;
@@ -18,7 +14,7 @@ namespace ContactsManager.Forms
 {
     public partial class Import : Form
     {
-        private string FilepathString = "";
+        private string _filepathString = "";
         private Thread _t;
         private List<ContactGroup> _contactGroups;
         private List<DataModelKey> _dataModels;
@@ -32,26 +28,38 @@ namespace ContactsManager.Forms
         {
             btn_import.Enabled = false;
             OpenFileDialog fl = new OpenFileDialog();
+            fl.CheckFileExists = true;
+            fl.DefaultExt = ".xlsx";
+            fl.Title = @"لطفا فایل اکسل ورودی خود را انتخاب نمایید";
             if (fl.ShowDialog() == DialogResult.OK)
             {
                 var existingFile = new FileInfo(fl.FileName);
-                using (var package = new ExcelPackage(existingFile))
+                if (MyUtility.IsFileLocked(existingFile))
+                    MessageBox.Show(@"فایل انتخاب شده توسط برنامه ای دیگر در حال استفاده می باشد لطفا آن را ببندید");
+                else if (existingFile.Extension != ".xlsx" && existingFile.Extension != ".xls")
                 {
-                    ExcelWorkbook workBook = package.Workbook;
-
-                    if (workBook != null)
+                    MessageBox.Show(@"لطفا داده های خود را در یک فایل اکسل ذخیره نمایید");
+                }
+                else
+                {
+                    using (var package = new ExcelPackage(existingFile))
                     {
-                        if (workBook.Worksheets.Count > 0)
+                        ExcelWorkbook workBook = package.Workbook;
+
+                        if (workBook != null)
                         {
-                            ExcelWorksheet currentWorksheet = workBook.Worksheets.First();
-                            foreach (
-                                var firstRowCell in
-                                    currentWorksheet.Cells[1, 1, 1, currentWorksheet.Dimension.End.Column])
+                            if (workBook.Worksheets.Count > 0)
                             {
-                                dataGV_group.Rows.Add(firstRowCell.Text, DataModelKey.None);
+                                ExcelWorksheet currentWorksheet = workBook.Worksheets.First();
+                                foreach (
+                                    var firstRowCell in
+                                        currentWorksheet.Cells[1, 1, 1, currentWorksheet.Dimension.End.Column])
+                                {
+                                    dataGV_group.Rows.Add(firstRowCell.Text, DataModelKey.None);
+                                }
+                                _filepathString = fl.FileName;
+                                btn_import.Enabled = true;
                             }
-                            FilepathString = fl.FileName;
-                            btn_import.Enabled = true;
                         }
                     }
                 }
@@ -80,19 +88,19 @@ namespace ContactsManager.Forms
                 (from ContactGroupDef g in clb_Groups.SelectedItems select new ContactGroup() {GroupId = g.Id}).ToList();
             _dataModels =
                 (from DataGridViewRow row in dataGV_group.Rows select (DataModelKey) row.Cells[1].Value).ToList();
-            _t = new Thread(import);
+            _t = new Thread(ImportData);
             if (!_t.IsAlive)
                 _t.Start();
             btn_import.Enabled = false;
         }
 
-        private void import()
+        private void ImportData()
         {
             ContactsEntities db = new ContactsEntities();
             int cnt = 0;
 
             var now = DateTime.Now;
-            var existingFile = new FileInfo(FilepathString);
+            var existingFile = new FileInfo(_filepathString);
             using (var package = new ExcelPackage(existingFile))
             {
                 ExcelWorkbook workBook = package.Workbook;
@@ -165,29 +173,105 @@ namespace ContactsManager.Forms
                             }
                             if (person.FirstName != "" || person.LastName != "")
                             {
-                                db.ContactPerson.Add(person);
-                                db.SaveChanges();
+                                
+                                //db.ContactPerson.Add(person);
+                                //db.SaveChanges();
+                                ContactPerson oldperson=null;
                                 foreach (ContactPhone contactPhone in contactPhones)
                                 {
-                                    contactPhone.ContactPersonID = person.Id;
-                                    db.ContactPhone.Add(contactPhone);
+                                    var oldphone = db.ContactPhone.FirstOrDefault(p => p.PhoneNumber == contactPhone.PhoneNumber);
+                                    if (oldphone != null)
+                                    {
+                                        oldperson = oldphone.ContactPerson;
+                                    }
+                                }
+                                if (oldperson != null)
+                                {
+                                    if (!string.IsNullOrEmpty(person.PostName))
+                                        oldperson.PostName =person.PostName;
+                                    if (!string.IsNullOrEmpty(person.FirstName))
+                                        oldperson.FirstName = person.FirstName;
+                                    if (!string.IsNullOrEmpty(person.LastName))
+                                        oldperson.PostName = person.LastName;
+                                    if (person.DateOfBirth!=null)
+                                        oldperson.DateOfBirth = person.DateOfBirth;
+                                    person = oldperson;
+                                    db.SaveChanges();
+                                }
+
+                                foreach (ContactPhone contactPhone in contactPhones)
+                                {
+                                    if (person.ContactPhone.All(p => p.PhoneNumber != contactPhone.PhoneNumber))
+                                        person.ContactPhone.Add(contactPhone);
+                                    else
+                                    {
+                                        var fphone = person.ContactPhone.FirstOrDefault(
+                                            p => p.PhoneNumber == contactPhone.PhoneNumber);
+                                        if (fphone != null)
+                                            fphone.PhoneType = contactPhone.PhoneType;
+                                    }
+                                    //contactPhone.ContactPersonID = person.Id;
+                                   // db.ContactPhone.Add(contactPhone);
                                 }
                                 foreach (ContactAddress contactAddress in contactAddresses)
                                 {
-                                    contactAddress.ContactPersonID = person.Id;
-                                    db.ContactAddress.Add(contactAddress);
+                                    if (person.ContactAddress.All(p => p.Address != contactAddress.Address))
+                                        person.ContactAddress.Add(contactAddress);
+                                    else
+                                    {
+                                        var fphone = person.ContactAddress.FirstOrDefault(
+                                            p => p.Address == contactAddress.Address);
+                                        if (fphone != null)
+                                            fphone.AddressType = contactAddress.AddressType;
+                                    }
+                                   
+                                    //contactAddress.ContactPersonID = person.Id;
+                                    //db.ContactAddress.Add(contactAddress);
                                 }
                                 foreach (ContactEmail contactEmail in contactEmails)
                                 {
-                                    contactEmail.ContactPersonID = person.Id;
-                                    db.ContactEmail.Add(contactEmail);
+                                    if (person.ContactEmail.All(p => p.Email != contactEmail.Email))
+                                        person.ContactEmail.Add(contactEmail);
+                                    else
+                                    {
+                                        var fphone = person.ContactEmail.FirstOrDefault(
+                                            p => p.Email == contactEmail.Email);
+                                        if (fphone != null)
+                                            fphone.EmailType = contactEmail.EmailType;
+                                    }
+                                   
+                                    //contactEmail.ContactPersonID = person.Id;
+                                    //db.ContactEmail.Add(contactEmail);
                                 }
                                 foreach (ContactGroup contactGroup in _contactGroups)
                                 {
-                                    contactGroup.ContactPersonID = person.Id;
-                                    db.ContactGroup.Add(contactGroup);
+                                    if (person.ContactGroup.All(p => p.GroupId != contactGroup.GroupId))
+                                        person.ContactGroup.Add(contactGroup);
+                                    //contactGroup.ContactPersonID = person.Id;
+                                    //db.ContactGroup.Add(contactGroup);
                                 }
-                                db.SaveChanges();
+                                if (oldperson == null)
+                                {
+                                    db.ContactPerson.Add(person);
+                                }
+                                try
+                                {
+                                    db.SaveChanges();
+                                }
+                                catch (DbEntityValidationException e)
+                                {
+                                    foreach (var eve in e.EntityValidationErrors)
+                                    {
+                                        MessageBox.Show("Entity of type " + eve.Entry.Entity.GetType().Name +
+                                                        " in state " + eve.Entry.State +
+                                                        " has the following validation errors:");
+                                        foreach (var ve in eve.ValidationErrors)
+                                        {
+                                            MessageBox.Show("- Property: "+ve.PropertyName+", Error: "+ve.ErrorMessage);
+                                        }
+                                    }
+                                    throw;
+                                }
                             }
                             else
                             {
@@ -216,7 +300,7 @@ namespace ContactsManager.Forms
                 PropertyInfo[] props = type.GetProperties();
                 foreach (PropertyInfo p in props)
                 {
-                    if (p.Name.ToUpper() == propName.ToUpper())
+                    if (String.Equals(p.Name, propName, StringComparison.CurrentCultureIgnoreCase))
                     {
                         p.SetValue(oControl, propValue, null);
                     }
@@ -233,6 +317,7 @@ namespace ContactsManager.Forms
             }
             catch (Exception)
             {
+                // ignored
             }
         }
     }

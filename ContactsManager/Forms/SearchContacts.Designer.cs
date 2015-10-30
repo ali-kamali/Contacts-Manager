@@ -57,6 +57,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cb_Page = new System.Windows.Forms.ComboBox();
+            this.btn_export = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGV_person)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -129,7 +130,7 @@
             this.clb_Groups.Location = new System.Drawing.Point(9, 10);
             this.clb_Groups.Name = "clb_Groups";
             this.clb_Groups.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.clb_Groups.Size = new System.Drawing.Size(202, 160);
+            this.clb_Groups.Size = new System.Drawing.Size(202, 108);
             this.clb_Groups.TabIndex = 6;
             // 
             // label5
@@ -195,7 +196,7 @@
             this.dataGV_person.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.dataGV_person.RowTemplate.DefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGV_person.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGV_person.Size = new System.Drawing.Size(807, 291);
+            this.dataGV_person.Size = new System.Drawing.Size(807, 336);
             this.dataGV_person.TabIndex = 21;
             this.dataGV_person.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGV_person_MouseDoubleClick);
             // 
@@ -315,6 +316,7 @@
             // 
             this.splitContainer1.Panel1.BackgroundImage = global::ContactsManager.Properties.Resources._1445637792_fine_print;
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.splitContainer1.Panel1.Controls.Add(this.btn_export);
             this.splitContainer1.Panel1.Controls.Add(this.cb_Page);
             this.splitContainer1.Panel1.Controls.Add(this.clb_Groups);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
@@ -335,8 +337,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGV_person);
-            this.splitContainer1.Size = new System.Drawing.Size(807, 478);
-            this.splitContainer1.SplitterDistance = 183;
+            this.splitContainer1.Size = new System.Drawing.Size(807, 522);
+            this.splitContainer1.SplitterDistance = 182;
             this.splitContainer1.TabIndex = 28;
             // 
             // cb_Page
@@ -349,6 +351,17 @@
             this.cb_Page.Size = new System.Drawing.Size(87, 32);
             this.cb_Page.TabIndex = 27;
             // 
+            // btn_export
+            // 
+            this.btn_export.Font = new System.Drawing.Font("B Nazanin", 14.25F);
+            this.btn_export.Location = new System.Drawing.Point(12, 127);
+            this.btn_export.Name = "btn_export";
+            this.btn_export.Size = new System.Drawing.Size(200, 42);
+            this.btn_export.TabIndex = 28;
+            this.btn_export.Text = "برون ریزی";
+            this.btn_export.UseVisualStyleBackColor = true;
+            this.btn_export.Click += new System.EventHandler(this.btn_export_Click);
+            // 
             // SearchContacts
             // 
             this.AcceptButton = this.btn_Search;
@@ -356,7 +369,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::ContactsManager.Properties.Resources._1445637792_fine_print;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(807, 478);
+            this.ClientSize = new System.Drawing.Size(807, 522);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -401,5 +414,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Group;
+        private System.Windows.Forms.Button btn_export;
     }
 }

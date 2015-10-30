@@ -271,7 +271,6 @@ namespace ContactsManager.Forms
                 if (con != null)
                 {
                     db.ContactPerson.Remove(con);
-
                     db.SaveChanges();
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactPhone WHERE ContactPersonID=" + _contactid);
                     db.Database.ExecuteSqlCommand("DELETE FROM ContactAddress WHERE ContactPersonID=" + _contactid);
